@@ -1,9 +1,9 @@
 import pg from 'pg' ;
 import 'dotenv/config'
-
-export const { Pool } = pg
  
-const pool = new Pool({
+const { Pool } = pg
+
+export const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   password: process.env.DB_PASSWORD,

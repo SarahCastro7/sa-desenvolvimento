@@ -1,4 +1,5 @@
-import pool from '../config/db.js'
+import { pool } from "../config/db.js";
+import 'dotenv/config'
 
 //aqui tem que ter aql negocio de try e catch
 
@@ -38,19 +39,6 @@ class FrutasService {
         } catch (error) {
             console.error('Erro ao criar fruta:', error);
             throw new Error('Erro ao criar fruta');
-        }
-    }
-
-    async updateFrutas(id, nome) {
-        try {
-            const result = await pool.query(
-                'UPDATE frutas SET nome = $1 WHERE id = $2 RETURNING *',
-                [nome, id]
-            )
-            return result.rows[0]
-        } catch (error) {
-            console.error('Erro ao atualizar fruta:', error);
-            throw new Error('Erro ao atualizar fruta');
         }
     }
 
@@ -94,4 +82,4 @@ class FrutasService {
     } 
 }
 
-export default new FrutasService()
+export default new FrutasService();
