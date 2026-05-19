@@ -1,5 +1,5 @@
-import express from "express";
-import { frutasService } from "../services/frutasServices.js";
+import express from 'express';
+import { frutasService } from './service/frutasServices.js';
 
 const routeFrutas = express.Router();
 
