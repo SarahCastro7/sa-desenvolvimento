@@ -1,5 +1,5 @@
 import express from 'express';
-import frutasRoutes from './routes/frutasRoutes.js';
+import equipamentosRoutes from './routes/equipamentosRoutes.js';
 
 const app = express();
 const PORT = 3000;
@@ -7,10 +7,10 @@ const PORT = 3000;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send("src");
+    res.send("the life isnt a strawberry!🍓");
 });
 
-app.use('/frutas', frutasRoutes);
+app.use('/equipamentos', equipamentosRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
