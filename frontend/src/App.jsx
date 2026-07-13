@@ -20,10 +20,42 @@ function App() {
     }
   }
 
-  return (
-    <div>
-      <h1>Equipamentos</h1>
-      
+return (
+    <div className="card-1">
+      <div className="card">
+        <h1>Furadeira</h1>
+        <p><strong>Descrição:</strong> Furadeira de impacto 500W</p>
+        <p><strong>Quantidade:</strong> 8</p>
+        <p><strong>Categoria:</strong> Elétrica</p>
+      </div>
+
+      <div className="card-2">
+        <h1>Martelo</h1>
+        <p><strong>Descrição:</strong> Martelo de unha 25mm</p>
+        <p><strong>Quantidade:</strong> 15</p>
+        <p><strong>Categoria:</strong> Manual</p>
+      </div>
+
+      <div className="card-3">
+        <h1>Serra Circular</h1>
+        <p><strong>Descrição:</strong> Serra circular 7 1/4"</p>
+        <p><strong>Quantidade:</strong> 4</p>
+        <p><strong>Categoria:</strong> Elétrica</p>
+      </div>
+
+      <div className="card-4">
+        <h1>Chave de Fenda</h1>
+        <p><strong>Descrição:</strong> Jogo de chaves de fenda</p>
+        <p><strong>Quantidade:</strong> 20</p>
+        <p><strong>Categoria:</strong> Manual</p>
+      </div>
+
+      <div className="card-5">
+        <h1>Parafusadeira</h1>
+        <p><strong>Descrição:</strong> Parafusadeira sem fio 12V</p>
+        <p><strong>Quantidade:</strong> 6</p>
+        <p><strong>Categoria:</strong> Elétrica</p>
+      </div>
     </div>
   );
 }
