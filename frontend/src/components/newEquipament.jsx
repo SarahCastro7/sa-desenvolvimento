@@ -1,4 +1,4 @@
-import { cadastrarFruta } from "../functions/frutas.js";
+    import { cadastrarFruta } from '../functions/frutas.js';
 
 export default function FormFruta() {
     return (
