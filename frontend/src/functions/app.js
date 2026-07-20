@@ -23,3 +23,4 @@ export async function cadastrarEquipamento(e) {
         console.error(error);
     }
 }
+

@@ -1,13 +1,13 @@
-import { cadastrarFruta } from "../functions/frutas.js";
+import { cadastrarEquipamento } from '../src/functions/app.js';
 
-export default function FormFruta() {
+export default function FormEquipamento() {
     return (
-        <form onSubmit={cadastrarFruta}>
+        <form onSubmit={cadastrarEquipamento}>
             <label htmlFor="">
-                Fruta Nome:
+                Equipamento Nome:
                 <input type="text" name="nome" />
             </label>
-            <button type="submit">Cadastrar Fruta</button>
+            <button type="submit">Cadastrar Equipamento</button>
         </form>
     )
 }
