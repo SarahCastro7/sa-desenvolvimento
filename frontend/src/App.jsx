@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import EquipamentoComponent from './components/quitanda.jsx'
 import FormEquipamento from './components/newEquipament.jsx'
-import FormEquipamento from './components/newEquipament.jsx'
-
+import './App.css'
 
 function App() {
   const [equipamentos, setEquipamentos] = useState([])
 
-  async function loadEquipamentos() {
+async function loadEquipamentos() {
     try {
+
       const res = await fetch("http://localhost:3000/equipamentos")
       const data = await res.json()
       setEquipamentos(data)
@@ -32,5 +32,4 @@ function App() {
     </div>
   )
 }
-
 export default App

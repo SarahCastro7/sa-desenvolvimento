@@ -1,3 +1,4 @@
+
 export default function EquipamentoComponent({ data }) {
     return (
         <div >
