@@ -3,7 +3,6 @@ import equipamentosService from '../service/equipamentosService.js';
 
 const equipamentosRoutes = express.Router();
 
-// get all
 equipamentosRoutes.get('/', async (req, res) => {
     try {
         const result = await equipamentosService.getAll();
@@ -14,7 +13,6 @@ equipamentosRoutes.get('/', async (req, res) => {
     }
 });
 
-// get by id
 equipamentosRoutes.get('/:id', async (req, res) => {
     try {
         const result = await equipamentosService.getById(req.params.id);
@@ -25,21 +23,19 @@ equipamentosRoutes.get('/:id', async (req, res) => {
     }
 });
 
-// post
 equipamentosRoutes.post('/', async (req, res) => {
     try {
-        const result = await equipamentosService.create(req.body.nome);
+        const result = await equipamentosService.create(req.body);
         res.status(201).json(result);
     } catch (error) {
         console.error('Erro ao criar equipamentos:', error);
-        res.status(500).json({ error: 'Erro ao criar equipamentos' });
+        res.status(500).json({ error: error.message || 'Erro ao criar equipamentos' });
     }
 });
 
-// put
 equipamentosRoutes.put('/:id', async (req, res) => {
     try {
-        const result = await equipamentosService.update(req.params.id, req.body.nome);
+        const result = await equipamentosService.update(req.params.id, req.body);
         res.json(result);
     } catch (error) {
         console.error('Erro ao atualizar equipamentos:', error);
@@ -47,10 +43,9 @@ equipamentosRoutes.put('/:id', async (req, res) => {
     }  
 });
 
-// patch
 equipamentosRoutes.patch('/:id', async (req, res) => {
     try {
-        const result = await equipamentosService.patch(req.params.id, req.body.nome);
+        const result = await equipamentosService.patch(req.params.id, req.body);
         res.json(result);
     } catch (error) {
         console.error('Erro ao atualizar equipamentos:', error);
@@ -58,7 +53,6 @@ equipamentosRoutes.patch('/:id', async (req, res) => {
     }
 });
 
-// delete
 equipamentosRoutes.delete('/:id', async (req, res) => {
     try {
         const result = await equipamentosService.delete(req.params.id);

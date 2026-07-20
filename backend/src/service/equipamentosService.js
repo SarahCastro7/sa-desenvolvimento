@@ -15,11 +15,11 @@ class EquipamentosService {
         }
     }
 
-    async getById(id) {
+    async getById(id_equipamento) {
         try {
             const result = await pool.query(
-                `SELECT * FROM ${TABLE} WHERE id = $1`,
-                [id]
+                `SELECT * FROM ${TABLE} WHERE id_equipamento = $1`,
+                [id_equipamento]
             );
             return result.rows[0];
         } catch (error) {
@@ -28,52 +28,50 @@ class EquipamentosService {
         }
     }
 
-    async create(nome) {
+    async create(dados) {
         try {
+            const { nome_equipamento, quantidade_equipamento, id_categoria, id_setor } = dados;
+            
             const result = await pool.query(
-                `INSERT INTO ${TABLE} (nome) VALUES ($1) RETURNING *`,
-                [nome]
+                `INSERT INTO ${TABLE} (nome_equipamento, quantidade_equipamento, id_categoria, id_setor) 
+                 VALUES ($1, $2, $3, $4) RETURNING *`,
+                [nome_equipamento, quantidade_equipamento, id_categoria, id_setor]
             );
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao criar equipamento:', error);
-            throw new Error('Erro ao criar equipamento');
+            console.error('Erro ao criar equipamento no banco:', error);
+            throw error; // Mantém o erro original para o controller capturar
         }
     }
 
-    async update(id, nome) {
+    async update(id_equipamento, dados) {
         try {
+            const { nome_equipamento, quantidade_equipamento, id_categoria, id_setor } = dados;
+
             const result = await pool.query(
-                `UPDATE ${TABLE} SET nome = $1 WHERE id = $2 RETURNING *`,
-                [nome, id]
+                `UPDATE ${TABLE} 
+                 SET nome_equipamento = $1, quantidade_equipamento = $2, id_categoria = $3, id_setor = $4 
+                 WHERE id_equipamento = $5 RETURNING *`,
+                [nome_equipamento, quantidade_equipamento, id_categoria, id_setor, id_equipamento]
             );
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao atualizar equipamento:', error);
-            throw new Error('Erro ao atualizar equipamento');
+            console.error('Erro ao atualizar equipamento no banco:', error);
+            throw error;
         }
     }
 
-    async patch(id, nome) {
-        try {
-            const result = await pool.query(
-                `UPDATE ${TABLE} SET nome = $1 WHERE id = $2 RETURNING *`,
-                [nome, id]
-            );
-            return result.rows[0];
-        } catch (error) {
-            console.error('Erro ao atualizar equipamento:', error);
-            throw new Error('Erro ao atualizar equipamento');
-        }
+    async patch(id_equipamento, dados) {
+        return this.update(id_equipamento, dados);
     }
 
-    async delete(id) {
+    async delete(id_equipamento) {
         try {
-            await pool.query(`DELETE FROM ${TABLE} WHERE id = $1`, [id]);
+            await pool.query(`DELETE FROM ${TABLE} WHERE id_equipamento = $1`, [id_equipamento]);
             return { message: 'Equipamento deletado com sucesso' };
         } catch (error) {
-            console.error('Erro ao deletar equipamento:', error);
-            throw new Error('Erro ao deletar equipamento');
+            console.error('Erro ao deletar equipamento no banco:', error);
+            throw error;
         }
     }
 }
